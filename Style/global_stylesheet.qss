@@ -1,0 +1,51 @@
+/* 全局样式表 */
+
+/* 设置窗口背景颜色 */
+QWidget {
+    background-color: #F4F4F4; /* 莫兰迪浅灰色 */
+    color: #4A4A4A; /* 深灰色字体 */
+    font-family: 'Arial';
+    font-size: 14px;
+}
+
+/* 标题样式 */
+QLabel#title {
+    font-size: 28px;
+    color: #6C6F7D; /* 灰蓝色 */
+    font-weight: bold;
+    text-align: center;
+}
+
+/* 按钮样式 */
+QPushButton {
+    background-color: #D3CBC5; /* 莫兰迪米色 */
+    color: #4A4A4A; /* 深灰色 */
+    border: 1px solid #AFAFAF;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+QPushButton:hover {
+    background-color: #C8B6A6; /* 鼠标悬停时的颜色 */
+}
+QPushButton:pressed {
+    background-color: #B8A597; /* 按下时的颜色 */
+}
+
+/* 进度条样式 */
+QProgressBar {
+    border: 1px solid #AFAFAF;
+    border-radius: 5px;
+    text-align: center;
+    background-color: #EAEAEA;
+}
+QProgressBar::chunk {
+    background-color: #6C6F7D; /* 灰蓝色 */
+    width: 10px;
+}
+
+/* 文本框样式 */
+QTextEdit, QLineEdit {
+    background-color: #FFFFFF;
+    border: 1px solid #AFAFAF;
+    padding: 5px;
+}
