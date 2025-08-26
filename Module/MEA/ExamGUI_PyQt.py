@@ -35,8 +35,14 @@ class Worker(QObject):
 
 
 class ExamGUI(QWidget):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, parent=None):
+        # allow embedding as a child widget by accepting an optional parent
+        super().__init__(parent)
+        # debug info to help determine whether this widget is a top-level window
+        try:
+            print(f"[DEBUG] ExamGUI.__init__: parent={parent}, parent_type={type(parent)}, isWindow={self.isWindow()}, windowFlags={int(self.windowFlags())}")
+        except Exception as _:
+            print(f"[DEBUG] ExamGUI.__init__: parent={parent}, parent_type={type(parent)}")
         self.setWindowTitle('Exam Analyzer')
         self.resize(900, 700)
         self.input_dir = os.getcwd()
@@ -194,8 +200,5 @@ class ExamGUI(QWidget):
         pass
 
 
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    win = ExamGUI()
-    win.show()
-    sys.exit(app.exec())
+# Note: this module is intended to be imported. If you need a standalone demo,
+# run it from a separate script or re-enable a demo entrypoint.
