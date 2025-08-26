@@ -4,6 +4,7 @@ from PyQt6.QtCore import QTranslator, QLocale, QStandardPaths
 import os
 os.environ["QT_API"] = "pyqt6"
 from Module.MainGUI import MainWindow
+# Normal startup; debug monkeypatches removed.
 
 def main():
     app = QApplication(sys.argv)

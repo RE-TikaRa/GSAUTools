@@ -1,5 +1,5 @@
-from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, 
-                           QLabel, QStackedWidget, QButtonGroup, QSplitter, QSizePolicy)
+from PyQt6.QtWidgets import (QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QLabel,
+                           QStackedWidget, QButtonGroup, QSplitter, QSizePolicy, QScrollArea)
 from PyQt6.QtCore import Qt, QSize, QPropertyAnimation, QEasingCurve
 from PyQt6.QtGui import QIcon
 from PyQt6.QtSvgWidgets import QSvgWidget
@@ -109,28 +109,31 @@ class MainWindow(QMainWindow):
 
     def _setup_content(self):
         """设置内容区"""
+        print("开始设置内容区...")
         self.content_stack = QStackedWidget()
         
-        # 仪表盘页面
+        print("创建仪表盘页面...")
         self.dashboard_page = self._create_dashboard_page()
         
-        # 功能页面
+        print("创建功能页面...")
         self.features_page = self._create_features_page()
+        print(f"功能页面是否包含功能卡片: {len(getattr(self, 'feature_cards', []))}")
         
-        # 功能详情页面
+        print("创建功能详情页面...")
         self.feature_pages = self._create_feature_pages()
         
-        # 设置和关于页面
+        print("创建设置和关于页面...")
         self.settings_page = self._create_settings_page()
         self.about_page = self._create_about_page()
 
-        # 添加所有页面到堆栈
+        print("添加所有页面到堆栈...")
         self.content_stack.addWidget(self.dashboard_page)
         self.content_stack.addWidget(self.features_page)
         for page in self.feature_pages:
             self.content_stack.addWidget(page)
         self.content_stack.addWidget(self.settings_page)
         self.content_stack.addWidget(self.about_page)
+        print(f"堆栈中的页面总数: {self.content_stack.count()}")
 
     def _init_signals(self):
         """初始化信号连接"""
@@ -180,7 +183,7 @@ class MainWindow(QMainWindow):
         layout = QVBoxLayout(page)
         layout.addStretch()
 
-        logo_widget = QSvgWidget("img/LOGO.svg")
+        logo_widget = QSvgWidget("Img/LOGO.svg")
         logo_widget.setFixedSize(400, 235)
         layout.addWidget(logo_widget, alignment=Qt.AlignmentFlag.AlignCenter)
         self.logo_widget = logo_widget  # 保存引用以便调整大小
@@ -190,35 +193,151 @@ class MainWindow(QMainWindow):
 
     def _create_features_page(self):
         """创建功能页面"""
+        print("\n=== 开始创建功能页面 ===")
         page = QWidget()
-        page.setStyleSheet("background-color: #f5f7fa;")
+        page.setStyleSheet("""
+            QWidget {
+                background-color: #f5f7fa;
+            }
+            QLabel#header {
+                font-size: 16px;
+                color: #333333;
+                margin: 20px 0;
+            }
+        """)
+        print("1. 创建了基础页面widget")
+        
+        # 主布局
         layout = QVBoxLayout(page)
-        layout.setContentsMargins(12, 12, 12, 12)
-        layout.setSpacing(12)
+        layout.setContentsMargins(20, 20, 20, 20)
+        layout.setSpacing(20)
+        print("2. 设置了主布局")
 
+        # 页面标题
         header = QLabel("功能 - 卡片式二级菜单")
+        header.setObjectName("header")
         header.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(header)
+        print("3. 添加了页面标题")
 
-        # 创建功能卡片
-        self.feature_cards = []
+        # 创建滚动区域
+        scroll = QScrollArea()
+        scroll.setWidgetResizable(True)
+        scroll.setStyleSheet("""
+            QScrollArea {
+                border: none;
+                background-color: transparent;
+            }
+            QWidget#cards_container {
+                background-color: transparent;
+            }
+        """)
+        print("4. 创建了滚动区域")
+
+        # 卡片容器
         cards_container = QWidget()
-        flow = FlowLayout()
-        cards_container.setLayout(flow)
-
-        for label_text, icon_name in self.card_defs:
-            pix = qta.icon(icon_name).pixmap(64, 64)
-            btn = CardButton(label_text, pix)
-            btn.setAccessibleName(label_text)
-            btn.setToolTip(label_text)
-            self.feature_cards.append(btn)
-            flow.addWidget(btn)
-
+        cards_container.setObjectName("cards_container")
+        cards_container.setMinimumWidth(600)  # 确保有足够的宽度显示卡片
         cards_container.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)
-        cards_container.setMinimumHeight(220)
-        layout.addWidget(cards_container)
-        layout.addStretch()
+        cards_container.setStyleSheet("""
+            QWidget {
+                background-color: transparent;
+            }
+        """)
+        print("5. 创建了卡片容器")
+        
+        # 使用FlowLayout来布局卡片
+        flow = FlowLayout(spacing=20)  # 增加卡片之间的间距
+        flow.setContentsMargins(20, 20, 20, 20)
+        cards_container.setLayout(flow)
+        print("6. 设置了Flow布局")
+        
+        # 设置滚动区域的内容
+        scroll.setWidget(cards_container)
+        print("7. 将卡片容器添加到滚动区域")
 
+        # 创建卡片
+        print("\n=== 开始创建功能卡片 ===")
+        self.feature_cards = []
+        print(f"卡片定义列表: {self.card_defs}")
+        
+        for label_text, icon_name in self.card_defs:
+            try:
+                print(f"\n创建卡片: {label_text}")
+                print(f"  - 使用图标: {icon_name}")
+                
+                # 创建 CardButton 时显式指定父对象为 cards_container，防止成为顶级窗口
+                btn = CardButton(label_text, parent=cards_container)
+                icon = qta.icon(icon_name)
+                pixmap = icon.pixmap(48, 48)
+                btn.setIcon(QIcon(pixmap))
+                print("  - 成功创建CardButton")
+                
+                btn.setAccessibleName(label_text)
+                btn.setToolTip(label_text)
+                print("  - 设置了辅助功能名称和工具提示")
+                
+                self.feature_cards.append(btn)
+                print("  - 添加到卡片列表")
+                
+                flow.addWidget(btn)
+                print("  - 添加到Flow布局")
+                
+                # 验证卡片是否可见
+                print(f"  - 卡片可见性: {btn.isVisible()}")
+                print(f"  - 卡片大小: {btn.size()}")
+                print(f"  - 卡片最小大小: {btn.minimumSize()}")
+                
+            except Exception as e:
+                print(f"创建卡片 {label_text} 失败:")
+                print(f"错误详情: {str(e)}")
+
+        print(f"\n创建的卡片总数: {len(self.feature_cards)}")
+        
+        scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        scroll.setStyleSheet("""
+            QScrollArea {
+                border: none;
+                background-color: transparent;
+            }
+            QScrollBar:vertical {
+                border: none;
+                width: 8px;
+                background-color: #f0f0f0;
+            }
+            QScrollBar::handle:vertical {
+                background-color: #c0c0c0;
+                min-height: 30px;
+                border-radius: 4px;
+            }
+            QScrollBar::handle:vertical:hover {
+                background-color: #a0a0a0;
+            }
+        """)
+        print("7. 设置了滚动区域样式")
+
+        # 创建居中容器
+        center_container = QWidget()
+        center_layout = QHBoxLayout(center_container)
+        center_layout.addStretch()
+        center_layout.addWidget(scroll)
+        center_layout.addStretch()
+        print("8. 创建了居中容器")
+
+        layout.addWidget(center_container)
+        
+        print("9. 所有组件添加完成")
+        print(f"功能页面层级结构:")
+        print(f"- Page (QWidget)")
+        print(f"  - Layout (QVBoxLayout)")
+        print(f"    - Header (QLabel)")
+        print(f"    - Center Container (QWidget)")
+        print(f"      - Center Layout (QHBoxLayout)")
+        print(f"        - Scroll Area (QScrollArea)")
+        print(f"          - Cards Container (QWidget)")
+        print(f"            - Flow Layout")
+        print(f"              - Cards: {len(self.feature_cards)} CardButtons")
+        
         return page
 
     def _create_feature_pages(self):
@@ -227,7 +346,8 @@ class MainWindow(QMainWindow):
         for i, (label_text, icon_name) in enumerate(self.card_defs):
             if i == 0:
                 try:
-                    page = ExamGUI()
+                    # embed ExamGUI as a child widget so it doesn't create its own top-level window
+                    page = ExamGUI(parent=self.content_stack)
                 except Exception as e:
                     print(f"Failed to embed ExamGUI: {e}")
                     page = self._create_placeholder_page(f"{label_text} (Exam GUI 加载失败)")
@@ -259,17 +379,22 @@ class MainWindow(QMainWindow):
     # 事件处理方法
     def switch_page(self, page_index):
         """切换页面"""
+        print(f"切换到页面 {page_index}")
         if self.current_page == page_index:
+            print("已经在当前页面，不需要切换")
             return
             
         self.current_page = page_index
         self.content_stack.setCurrentIndex(page_index)
+        print(f"当前页面索引: {self.content_stack.currentIndex()}")
         
         for button in self.menu_buttons:
             button.setChecked(button == self.page_button_map.get(page_index))
 
         features_index = self.button_page_map.get(self.features_btn)
+        print(f"功能页面索引: {features_index}")
         if page_index == features_index:
+            print("切换到功能页面")
             if self.sidebar_expanded and not self.features_submenu.isVisible():
                 self.expand_submenu()
         else:
