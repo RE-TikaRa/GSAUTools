@@ -1,7 +1,0 @@
-ttkbootstrap
-beautifulsoup4
-requests
-pillow
-python-docx
-PyQt6
-qtawesome

@@ -1,0 +1,17 @@
+{
+  "current_theme": "ocean",
+  "current_variant": "light",
+  "auto_switch_enabled": true,
+  "auto_switch_mode": "time",
+  "light_start_time": "00:00",
+  "dark_start_time": "17:00",
+  "mixed_mode": false,
+  "mixed_settings": {
+    "title_theme": "morandi",
+    "title_variant": "light",
+    "button_theme": "modern",
+    "button_variant": "light",
+    "background_theme": "ocean",
+    "background_variant": "light"
+  }
+}

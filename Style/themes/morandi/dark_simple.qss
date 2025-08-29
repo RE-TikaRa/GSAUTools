@@ -1,0 +1,629 @@
+/*
+===========================================
+莫兰蒂深色主题 - Morandi Dark Theme (简化版)
+===========================================
+温暖优雅的莫兰蒂深色调，专为PyQt6优化
+移除不支持的CSS属性，保持视觉效果
+*/
+
+/* ===========================================
+   全局基础样式
+   =========================================== */
+QMainWindow {
+    background-color: #2A2520;
+    color: #D4CFC9;
+}
+
+QWidget {
+    font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+    font-size: 14px;
+    color: #D4CFC9;
+    background-color: #2A2520;
+    border: none;
+    outline: none;
+}
+
+/* ===========================================
+   页面容器样式
+   =========================================== */
+QWidget[objectName="dashboardPage"] {
+    background-color: #2A2520;
+}
+
+QWidget[objectName="featuresPage"] {
+    background-color: #2A2520;
+}
+
+QWidget[objectName="cardsContainer"] {
+    background-color: transparent;
+}
+
+QScrollArea[objectName="pageScrollArea"] {
+    border: none;
+    background-color: transparent;
+}
+
+QLabel[objectName="pageHeader"] {
+    font-size: 18px;
+    font-weight: 600;
+    color: #E8E5E1;
+    margin: 10px 0px;
+}
+/* ===========================================
+   占位页面样式 (自动添加)
+   =========================================== */
+QWidget[objectName="placeholderPage"] {
+    background-color: #2A2520;
+}
+
+QLabel[objectName="placeholderLabel"] {
+    color: #D4CFC9;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+/* ===========================================
+   侧边栏样式
+   =========================================== */
+QWidget[objectName="sidebar"] {
+    background-color: #3D342E;
+    border-right: 2px solid #4A453F;
+}
+/* ===========================================
+   组件尺寸约束 (自动添加) - 以莫兰蒂主题为标准
+   =========================================== */
+/* 卡片按钮固定尺寸样式 - 莫兰蒂标准 */
+QPushButton[objectName*="card"] {
+    min-width: 160px;
+    max-width: 160px;
+    min-height: 120px;
+    max-height: 120px;
+    background-color: #332C26;
+    border: 2px solid #4A453F;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    color: #D4CFC9;
+}
+
+QPushButton[objectName*="card"]:hover {
+    background-color: #3D342E;
+    border-color: #A69C94;
+    border-width: 3px;
+    padding: 19px;  /* 补偿边框增加的1px */
+}
+
+QPushButton[objectName*="card"]:pressed {
+    background-color: #2A2520;
+    padding: 21px 19px 19px 21px;  /* 模拟按下效果 */
+}
+
+/* 侧边栏按钮固定尺寸样式 - 左对齐 */
+QPushButton[objectName*="sidebar"] {
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;  /* 左边距减少以实现左对齐 */
+    text-align: left;
+    color: #D4CFC9;
+    min-height: 36px;
+    max-height: 36px;
+    min-width: 160px;
+}
+
+QPushButton[objectName*="sidebar"]:hover {
+    background-color: #3D342E;
+    color: #E8E5E1;
+}
+
+QPushButton[objectName*="sidebar"]:pressed {
+    background-color: #4A453F;
+}
+
+
+/* ===========================================
+   标题样式
+   =========================================== */
+QLabel[objectName="title"] {
+    font-size: 28px;
+    font-weight: 700;
+    color: #E8E5E1;
+    background: transparent;
+}
+
+QLabel[objectName="subtitle"] {
+    font-size: 20px;
+    font-weight: 600;
+    color: #D4CFC9;
+    background: transparent;
+}
+
+QLabel[objectName="section-title"] {
+    font-size: 16px;
+    font-weight: 600;
+    color: #E8E5E1;
+    background: transparent;
+}
+
+/* ===========================================
+   按钮样式
+   =========================================== */
+QPushButton {
+    background-color: #3D342E;
+    color: #D4CFC9;
+    border: 2px solid #4A453F;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 20px;
+}
+
+QPushButton:hover {
+    background-color: #4A453F;
+    border-color: #A69C94;
+    color: #E8E5E1;
+}
+
+QPushButton:pressed {
+    background-color: #332C26;
+    border-color: #9B8F87;
+    padding: 13px 23px 11px 25px;
+}
+
+QPushButton:disabled {
+    background-color: #2D2823;
+    color: #6B635C;
+    border-color: #3A332D;
+}
+
+/* 卡片按钮样式 */
+QPushButton[objectName*="card"] {
+    background-color: #332C26;
+    border: 2px solid #4A453F;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    min-width: 156px;
+    max-width: 156px;
+    min-height: 116px;
+    max-height: 116px;
+    color: #D4CFC9;
+}
+
+
+/* ===========================================
+   输入控件样式
+   =========================================== */
+QLineEdit, QTextEdit, QPlainTextEdit {
+    background-color: #332C26;
+    color: #D4CFC9;
+    border: 2px solid #4A453F;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 14px;
+    selection-background-color: #A69C94;
+    selection-color: #2A2520;
+}
+
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
+    border-color: #A69C94;
+    background-color: #3D342E;
+}
+
+QSpinBox, QDoubleSpinBox {
+    background-color: #332C26;
+    color: #D4CFC9;
+    border: 2px solid #4A453F;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+QSpinBox:focus, QDoubleSpinBox:focus {
+    border-color: #A69C94;
+}
+
+/* ===========================================
+   下拉菜单样式
+   =========================================== */
+QComboBox {
+    background-color: #332C26;
+    color: #D4CFC9;
+    border: 2px solid #4A453F;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+QComboBox:focus {
+    border-color: #A69C94;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 25px;
+    background: transparent;
+}
+
+QComboBox::down-arrow {
+    width: 12px;
+    height: 12px;
+    background-color: #A69C94;
+}
+
+QComboBox QAbstractItemView {
+    background-color: #332C26;
+    border: 2px solid #4A453F;
+    border-radius: 8px;
+    padding: 5px;
+    color: #D4CFC9;
+    selection-background-color: #4A453F;
+    selection-color: #E8E5E1;
+}
+
+/* ===========================================
+   复选框和单选框
+   =========================================== */
+QCheckBox, QRadioButton {
+    color: #D4CFC9;
+    font-size: 14px;
+    padding: 5px;
+}
+
+QCheckBox::indicator, QRadioButton::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #4A453F;
+    background-color: #332C26;
+    border-radius: 3px;
+}
+
+QRadioButton::indicator {
+    border-radius: 9px;
+}
+
+QCheckBox::indicator:checked, QRadioButton::indicator:checked {
+    background-color: #A69C94;
+    border-color: #9B8F87;
+}
+
+QCheckBox::indicator:hover, QRadioButton::indicator:hover {
+    border-color: #A69C94;
+}
+
+/* ===========================================
+   滚动条样式
+   =========================================== */
+QScrollBar:vertical {
+    background-color: #3D342E;
+    width: 12px;
+    border: none;
+    border-radius: 6px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #4A453F;
+    border-radius: 6px;
+    min-height: 20px;
+    margin: 2px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #A69C94;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    background-color: #3D342E;
+    height: 12px;
+    border: none;
+    border-radius: 6px;
+    margin: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #4A453F;
+    border-radius: 6px;
+    min-width: 20px;
+    margin: 2px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #A69C94;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+/* ===========================================
+   列表和树形控件
+   =========================================== */
+QListWidget, QTreeWidget {
+    background-color: #332C26;
+    color: #D4CFC9;
+    border: 2px solid #4A453F;
+    border-radius: 8px;
+    padding: 5px;
+    alternate-background-color: #3D342E;
+}
+
+QListWidget::item, QTreeWidget::item {
+    padding: 8px;
+    border-radius: 4px;
+    margin: 1px;
+    color: #D4CFC9;
+}
+
+QListWidget::item:selected, QTreeWidget::item:selected {
+    background-color: #4A453F;
+    color: #E8E5E1;
+}
+
+QListWidget::item:hover, QTreeWidget::item:hover {
+    background-color: #3D342E;
+}
+
+/* ===========================================
+   标签页系统
+   =========================================== */
+QTabWidget::pane {
+    border: 2px solid #4A453F;
+    border-radius: 8px;
+    padding: 10px;
+    background-color: #332C26;
+}
+
+QTabBar::tab {
+    background-color: #3D342E;
+    color: #D4CFC9;
+    padding: 10px 20px;
+    border: 2px solid #4A453F;
+    border-bottom: none;
+    border-radius: 8px 8px 0px 0px;
+    margin-right: 2px;
+}
+
+QTabBar::tab:selected {
+    background-color: #332C26;
+    color: #E8E5E1;
+    border-bottom: 2px solid #332C26;
+}
+
+QTabBar::tab:hover {
+    background-color: #4A453F;
+}
+
+/* ===========================================
+   分组框和框架
+   =========================================== */
+QGroupBox {
+    font-weight: 600;
+    color: #E8E5E1;
+    border: 2px solid #4A453F;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding-top: 15px;
+    background-color: #332C26;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0px 10px;
+    color: #D4CFC9;
+}
+
+QFrame {
+    border: 1px solid #4A453F;
+    border-radius: 6px;
+    background-color: #332C26;
+}
+
+/* ===========================================
+   进度条系统
+   =========================================== */
+QProgressBar {
+    border: 2px solid #4A453F;
+    border-radius: 8px;
+    padding: 2px;
+    text-align: center;
+    background-color: #3D342E;
+    color: #D4CFC9;
+}
+
+QProgressBar::chunk {
+    background-color: #A69C94;
+    border-radius: 6px;
+}
+
+/* ===========================================
+   菜单系统
+   =========================================== */
+QMenuBar {
+    background-color: #2A2520;
+    color: #D4CFC9;
+    border-bottom: 1px solid #4A453F;
+    padding: 5px;
+}
+
+QMenuBar::item {
+    background-color: transparent;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+QMenuBar::item:selected {
+    background-color: #4A453F;
+    color: #E8E5E1;
+}
+
+QMenu {
+    background-color: #332C26;
+    color: #D4CFC9;
+    border: 2px solid #4A453F;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+QMenu::item {
+    padding: 8px 20px;
+    border-radius: 4px;
+}
+
+QMenu::item:selected {
+    background-color: #4A453F;
+    color: #E8E5E1;
+}
+
+QMenu::separator {
+    height: 1px;
+    background-color: #4A453F;
+    margin: 5px 0px;
+}
+
+/* ===========================================
+   工具栏系统
+   =========================================== */
+QToolBar {
+    background-color: #2A2520;
+    border: none;
+    padding: 5px;
+    color: #D4CFC9;
+}
+
+QToolButton {
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 8px;
+    margin: 2px;
+    color: #D4CFC9;
+}
+
+QToolButton:hover {
+    background-color: #4A453F;
+    border-color: #A69C94;
+}
+
+QToolButton:pressed {
+    background-color: #3D342E;
+}
+
+/* ===========================================
+   状态栏系统
+   =========================================== */
+QStatusBar {
+    background-color: #2A2520;
+    color: #D4CFC9;
+    border-top: 1px solid #4A453F;
+    padding: 5px;
+}
+
+/* ===========================================
+   分割器系统
+   =========================================== */
+QSplitter::handle {
+    background-color: #4A453F;
+}
+
+QSplitter::handle:horizontal {
+    width: 3px;
+}
+
+QSplitter::handle:vertical {
+    height: 3px;
+}
+
+QSplitter::handle:hover {
+    background-color: #A69C94;
+}
+
+/* ===========================================
+   ThemeCardButton 专门样式 - 深色模式版本
+   =========================================== */
+
+/* 主题卡片按钮基础样式 - 深色模式 */
+QPushButton#ThemeCardButton {
+    background-color: #3D342E;
+    border: 2px solid #5A524C;
+    border-radius: 12px;
+    padding: 12px;
+    color: #D4CFC9;
+    min-width: 160px;
+    max-width: 160px;
+    min-height: 120px;
+    max-height: 120px;
+}
+
+QPushButton#ThemeCardButton:hover {
+    background-color: #4A453F;
+    border-color: #A69C94;
+    border-width: 3px;
+    padding: 11px;  /* 补偿边框增加的1px */
+}
+
+QPushButton#ThemeCardButton:pressed {
+    background-color: #2A2520;
+    padding: 13px 11px 11px 13px;  /* 模拟按下效果 */
+}
+
+/* 选中状态样式 - 深色模式 */
+QPushButton#ThemeCardButton:checked {
+    background-color: #A69C94;
+    border-color: #9B8F87;
+    color: #FFFFFF;
+}
+
+QPushButton#ThemeCardButton:checked:hover {
+    background-color: #9B8F87;
+    border-color: #8A7E76;
+}
+
+/* 主题卡片内部标签样式 - 深色模式 */
+QPushButton#ThemeCardButton QLabel {
+    background-color: transparent;
+    border: none;
+    color: #E8E5E1;  /* 浅色文字，确保在深色背景下可读 */
+}
+
+QPushButton#ThemeCardButton:enabled QLabel {
+    color: #E8E5E1;  /* 浅色文字，加强对比度 */
+}
+
+/* 选中状态下的标签文字为白色 */
+QPushButton#ThemeCardButton:checked QLabel {
+    color: #FFFFFF;
+}
+
+QPushButton#ThemeCardButton:checked:enabled QLabel {
+    color: #FFFFFF;
+}
+
+/* 通过父容器进一步确保样式优先级 - 深色模式 */
+QWidget[objectName="themeSettingsCard"] QPushButton#ThemeCardButton QLabel {
+    color: #E8E5E1;
+}
+
+QWidget[objectName="themeSettingsCard"] QPushButton#ThemeCardButton:checked QLabel {
+    color: #FFFFFF;
+}
+
+/* FINAL ThemeCardButton override - highest priority - 深色模式 */
+QPushButton#ThemeCardButton QLabel#themeCardName,
+QPushButton#ThemeCardButton QLabel#themeCardVariant {
+    color: #E8E5E1 !important;
+    background-color: transparent !important;
+}
+
+QPushButton#ThemeCardButton:checked QLabel#themeCardName,
+QPushButton#ThemeCardButton:checked QLabel#themeCardVariant {
+    color: #FFFFFF !important;
+}

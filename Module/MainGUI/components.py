@@ -14,6 +14,18 @@ class SidebarButton(QPushButton):
             self.setIcon(qta.icon(icon_name))
         self.setFixedHeight(40)
         self.setIconSize(QSize(20, 20))
+        
+        # 移除内联样式，让主题系统完全控制
+        # 只保留基本的文本对齐
+        self.setStyleSheet("""
+            QPushButton {
+                text-align: left;
+                padding-left: 10px;
+            }
+        """)
+        
+        # 设置对象名以便主题识别
+        self.setObjectName("SidebarButton")
 
 class CardButton(QPushButton):
     """卡片式按钮组件，用于功能展示"""
@@ -24,6 +36,9 @@ class CardButton(QPushButton):
         self.setFocusPolicy(Qt.FocusPolicy.NoFocus)
         self.setFixedSize(160, 120)
         self.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
+        
+        # 设置对象名以便主题识别
+        self.setObjectName("CardButton")
 
         # 内部垂直布局，用 stretch 居中图标和文字
         layout = QVBoxLayout(self)
@@ -39,6 +54,14 @@ class CardButton(QPushButton):
         self.icon_label.setFixedSize(56, 56)
         self.icon_label.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         self.icon_label.setContentsMargins(0, 0, 0, 0)
+        # 设置objectName和基础样式确保背景透明
+        self.icon_label.setObjectName("cardButtonIcon")
+        self.icon_label.setStyleSheet("""
+            QLabel {
+                background: transparent;
+                border: none;
+            }
+        """)
         layout.addWidget(self.icon_label, alignment=Qt.AlignmentFlag.AlignHCenter)
 
         # 文本标签（内部管理）
@@ -48,6 +71,16 @@ class CardButton(QPushButton):
         self.text_label.setSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Maximum)
         # 增加顶部间距，避免图标与文字靠得太近
         self.text_label.setContentsMargins(0, 8, 0, 0)
+        # 设置objectName确保样式被正确应用
+        self.text_label.setObjectName("cardButtonLabel")
+        # 设置基础样式，让主题系统能够正确继承和覆盖
+        self.text_label.setStyleSheet("""
+            QLabel {
+                background: transparent;
+                border: none;
+                color: inherit;
+            }
+        """)
         font = self.text_label.font()
         font.setPointSize(9)
         self.text_label.setFont(font)
@@ -55,39 +88,7 @@ class CardButton(QPushButton):
 
         layout.addStretch()
 
-        # 样式
-        self.setStyleSheet('''
-            QPushButton {
-                background: white;
-                border: 1px solid #e0e0e0;
-                border-radius: 10px;
-                padding: 10px;
-            }
-            QPushButton:hover {
-                background: #f8f9fa;
-                border: 1px solid #d0d0d0;
-            }
-            QPushButton:pressed {
-                background: #e9ecef;
-                border: 1px solid #bda9a2;
-            }
-            QPushButton:checked {
-                background: #bda9a2;
-                border: 1px solid #a79088;
-            }
-            QPushButton:checked:hover {
-                background: #b19c95;
-            }
-            QLabel {
-                background: transparent;
-                border: none;
-                color: #333333;
-            }
-            QPushButton:checked QLabel {
-                /* 选中时文字使用深色，避免在浅色背景上变白导致可读性问题 */
-                color: #2f2d2b;
-            }
-        ''')
+        # 样式现在由主题系统管理，移除内联样式
 
     def setText(self, text: str):
         """设置内部文本标签的文本"""
@@ -132,29 +133,31 @@ class SubMenu(QWidget):
         if icon_name:
             btn.setIcon(qta.icon(icon_name))
             btn.setIconSize(QSize(16, 16))
+        
+        # 设置objectName让主题系统能识别
+        btn.setObjectName("SubMenuButton")
+        
+        # 移除内联样式，让主题系统完全控制
         btn.setStyleSheet("""
             QPushButton {
                 text-align: left;
                 padding-left: 25px;
-                background: transparent;
-                color: #f3efea;
-                border: none;
             }
-            QPushButton:hover { background-color: rgba(255,255,255,0.06); }
-            QPushButton:checked { background-color: #bda9a2; color: #2f2d2b; }
         """)
         self._layout.addWidget(btn)
         return btn
 
 class FlowLayout(QLayout):
-    """流式布局组件"""
-    def __init__(self, parent=None, margin=0, spacing=12, max_columns=3):
+    """自适应流式布局组件 - 支持响应式设计"""
+    def __init__(self, parent=None, margin=0, spacing=12, max_columns=6):
         super().__init__(parent)
         if parent is not None:
             self.setContentsMargins(margin, margin, margin, margin)
         self._spacing = spacing
         self.itemList = []
-        self.max_columns = max_columns
+        self.max_columns = max_columns  # 增加默认最大列数
+        self.min_item_width = 160  # 最小项目宽度
+        self.item_height = 120     # 固定项目高度
 
     def __del__(self):
         while self.itemList:

@@ -56,8 +56,7 @@ class ExamGUI(QWidget):
 
         title = QLabel('MOOC 考试解析')
         title.setAlignment(Qt.AlignmentFlag.AlignCenter)
-        # 调整标题的字号和颜色
-        title.setStyleSheet("font-size: 24px; color: #6C6F7D;")  # 莫兰迪色系的灰蓝色
+        title.setObjectName("examTitle")
         layout.addWidget(title)
 
         # input row
@@ -107,8 +106,8 @@ class ExamGUI(QWidget):
         self.progress = QProgressBar()
         layout.addWidget(self.progress)
 
-        # 设置整体窗口的背景颜色为莫兰迪色系
-        self.setStyleSheet("background-color: #EAEAEA;")  # 莫兰迪浅灰色
+        # 设置组件的objectName用于主题管理
+        self.setObjectName("examWidget")
 
     def browse_input(self):
         d = QFileDialog.getExistingDirectory(self, '选择输入文件夹', self.input_dir)

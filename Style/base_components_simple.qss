@@ -1,0 +1,343 @@
+/*
+===========================================
+简化基础组件样式库 - Simple Base Components
+===========================================
+专为PyQt6优化的简洁样式定义
+移除所有不支持的CSS属性和变量
+*/
+
+/* ===========================================
+   全局基础样式
+   =========================================== */
+QWidget {
+    font-family: 'Segoe UI', 'Microsoft YaHei', Arial, sans-serif;
+    font-size: 14px;
+    border: none;
+    outline: none;
+}
+
+/* ===========================================
+   标题系统
+   =========================================== */
+QLabel[objectName="title"] {
+    font-size: 28px;
+    font-weight: 700;
+    padding: 20px 0px;
+    background: transparent;
+}
+
+QLabel[objectName="subtitle"] {
+    font-size: 20px;
+    font-weight: 600;
+    padding: 15px 0px;
+    background: transparent;
+}
+
+QLabel[objectName="section-title"] {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 0px;
+    background: transparent;
+}
+
+/* ===========================================
+   按钮系统
+   =========================================== */
+QPushButton {
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    min-height: 20px;
+    text-align: center;
+}
+
+QPushButton:hover {
+    border-width: 2px;
+}
+
+QPushButton:pressed {
+    padding: 11px 19px 9px 21px;
+}
+
+QPushButton:disabled {
+    color: #999999;
+    border-color: #DDDDDD;
+}
+
+/* 卡片按钮 */
+QPushButton[objectName*="card"] {
+    border: 2px solid #E0E0E0;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    min-height: 60px;
+}
+
+QPushButton[objectName*="card"]:hover {
+    border-width: 3px;
+}
+
+/* 侧边栏按钮 */
+QPushButton[objectName*="sidebar"] {
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    text-align: left;
+    min-height: 40px;
+}
+
+/* ===========================================
+   输入控件系统
+   =========================================== */
+QLineEdit, QTextEdit, QPlainTextEdit {
+    border: 2px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
+    border-width: 2px;
+}
+
+QSpinBox, QDoubleSpinBox {
+    border: 2px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+QSpinBox:focus, QDoubleSpinBox:focus {
+    border-width: 2px;
+}
+
+/* ===========================================
+   下拉菜单系统
+   =========================================== */
+QComboBox {
+    border: 2px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+QComboBox:focus {
+    border-width: 2px;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 20px;
+}
+
+QComboBox::down-arrow {
+    width: 12px;
+    height: 12px;
+}
+
+/* ===========================================
+   复选框和单选框
+   =========================================== */
+QCheckBox, QRadioButton {
+    font-size: 14px;
+    padding: 5px;
+}
+
+QCheckBox::indicator, QRadioButton::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #CCCCCC;
+    border-radius: 3px;
+}
+
+QRadioButton::indicator {
+    border-radius: 9px;
+}
+
+QCheckBox::indicator:checked, QRadioButton::indicator:checked {
+    border-width: 2px;
+}
+
+/* ===========================================
+   滚动条系统
+   =========================================== */
+QScrollBar:vertical {
+    width: 12px;
+    border: none;
+    border-radius: 6px;
+    margin: 0px;
+}
+
+QScrollBar::handle:vertical {
+    border-radius: 6px;
+    min-height: 20px;
+}
+
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    height: 12px;
+    border: none;
+    border-radius: 6px;
+    margin: 0px;
+}
+
+QScrollBar::handle:horizontal {
+    border-radius: 6px;
+    min-width: 20px;
+}
+
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+/* ===========================================
+   列表和树形控件
+   =========================================== */
+QListWidget, QTreeWidget {
+    border: 2px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+QListWidget::item, QTreeWidget::item {
+    padding: 8px;
+    border-radius: 4px;
+    margin: 2px;
+}
+
+/* ===========================================
+   标签页系统
+   =========================================== */
+QTabWidget::pane {
+    border: 2px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 10px;
+}
+
+QTabBar::tab {
+    padding: 10px 20px;
+    border: 2px solid #CCCCCC;
+    border-bottom: none;
+    border-radius: 6px 6px 0px 0px;
+    margin-right: 2px;
+}
+
+QTabBar::tab:selected {
+    border-bottom: 2px solid white;
+}
+
+/* ===========================================
+   分组框和框架
+   =========================================== */
+QGroupBox {
+    font-weight: 600;
+    border: 2px solid #CCCCCC;
+    border-radius: 6px;
+    margin-top: 10px;
+    padding-top: 15px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0px 10px;
+}
+
+QFrame {
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+}
+
+/* ===========================================
+   进度条系统
+   =========================================== */
+QProgressBar {
+    border: 2px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 2px;
+    text-align: center;
+}
+
+QProgressBar::chunk {
+    border-radius: 4px;
+}
+
+/* ===========================================
+   菜单系统
+   =========================================== */
+QMenuBar {
+    border-bottom: 1px solid #CCCCCC;
+    padding: 5px;
+}
+
+QMenuBar::item {
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+QMenu {
+    border: 1px solid #CCCCCC;
+    border-radius: 6px;
+    padding: 5px;
+}
+
+QMenu::item {
+    padding: 8px 20px;
+    border-radius: 4px;
+}
+
+QMenu::separator {
+    height: 1px;
+    margin: 5px 0px;
+}
+
+/* ===========================================
+   工具栏系统
+   =========================================== */
+QToolBar {
+    border: none;
+    padding: 5px;
+}
+
+QToolButton {
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 8px;
+    margin: 2px;
+}
+
+QToolButton:hover {
+    border-color: #CCCCCC;
+}
+
+/* ===========================================
+   状态栏系统
+   =========================================== */
+QStatusBar {
+    border-top: 1px solid #CCCCCC;
+    padding: 5px;
+}
+
+/* ===========================================
+   分割器系统
+   =========================================== */
+QSplitter::handle {
+    width: 3px;
+    height: 3px;
+}
+
+QSplitter::handle:horizontal {
+    width: 3px;
+}
+
+QSplitter::handle:vertical {
+    height: 3px;
+}

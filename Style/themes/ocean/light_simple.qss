@@ -1,0 +1,545 @@
+/* 海洋浅色主题 - Ocean Light Theme */
+
+/* 基础配色变量 */
+/* 
+主色调: #0EA5E9 (天空蓝)
+背景色: #F0F9FF (极浅蓝)
+次要背景: #E0F2FE (浅蓝)
+文本色: #0C4A6E (深海蓝)
+强调色: #0284C7 (中海蓝)
+边框色: #7DD3FC (浅天蓝)
+成功色: #059669 (绿松石)
+警告色: #D97706 (琥珀)
+错误色: #DC2626 (珊瑚红)
+*/
+
+/* 全局设置 */
+QWidget {
+    background-color: #F0F9FF;
+    color: #0C4A6E;
+    font-family: 'Microsoft YaHei UI', 'Segoe UI', 'Arial', sans-serif;
+    font-size: 14px;
+    selection-background-color: #0EA5E9;
+    selection-color: #F0F9FF;
+}
+
+/* 标题样式规范 */
+QLabel#title, QLabel[styleClass="title"] {
+    font-size: 34px;
+    font-weight: 600;
+    color: #0284C7;
+    letter-spacing: -0.25px;
+    margin: 22px 0;
+    text-align: center;
+}
+
+QLabel#subtitle, QLabel[styleClass="subtitle"] {
+    font-size: 22px;
+    font-weight: 500;
+    color: #0369A1;
+    margin: 18px 0;
+}
+
+QLabel#header, QLabel[styleClass="header"] {
+    font-size: 19px;
+    font-weight: 500;
+    color: #0EA5E9;
+    margin: 16px 0;
+    padding: 10px 0;
+    border-bottom: 2px solid #7DD3FC;
+}
+
+QLabel#caption, QLabel[styleClass="caption"] {
+    font-size: 12px;
+    color: #075985;
+    font-style: italic;
+}
+
+/* 按钮样式 */
+QPushButton {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #0EA5E9, stop:1 #0284C7);
+    border: 1px solid #0369A1;
+    border-radius: 8px;
+    padding: 10px 18px;
+    color: #FFFFFF;
+    font-weight: 500;
+    min-height: 22px;
+}
+
+QPushButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #0284C7, stop:1 #0369A1);
+    border-color: #075985;
+}
+
+QPushButton:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #0369A1, stop:1 #075985);
+}
+
+QPushButton:checked {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #059669, stop:1 #047857);
+    border-color: #065F46;
+    color: #FFFFFF;
+}
+
+QPushButton:disabled {
+    background: #BAE6FD;
+    border-color: #7DD3FC;
+    color: #0369A1;
+}
+
+/* 卡片按钮样式 */
+QPushButton#CardButton {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #FFFFFF, stop:1 #F0F9FF);
+    border: 2px solid #7DD3FC;
+    border-radius: 14px;
+    padding: 18px;
+    min-width: 160px;
+    min-height: 120px;
+    max-width: 160px;
+    max-height: 120px;
+    color: #0C4A6E;
+}
+
+QPushButton#CardButton:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #F0F9FF, stop:1 #E0F2FE);
+    border-color: #0EA5E9;
+}
+
+QPushButton#CardButton:pressed {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #E0F2FE, stop:1 #BAE6FD);
+}
+
+QPushButton#CardButton:checked {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #0EA5E9, stop:1 #0284C7);
+    border-color: #0369A1;
+    color: #FFFFFF;
+}
+
+QPushButton#CardButton QLabel {
+    background: transparent;
+    border: none;
+    color: #0C4A6E;
+}
+
+QPushButton#CardButton:checked QLabel {
+    color: #FFFFFF;
+}
+
+/* 输入框样式 */
+QLineEdit, QTextEdit, QPlainTextEdit {
+    background-color: #FFFFFF;
+    border: 2px solid #7DD3FC;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #0C4A6E;
+    font-size: 14px;
+}
+
+QLineEdit:focus, QTextEdit:focus, QPlainTextEdit:focus {
+    border-color: #0EA5E9;
+    background-color: #FEFEFE;
+}
+
+/* 组合框样式 */
+QComboBox {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #FFFFFF, stop:1 #F0F9FF);
+    border: 2px solid #7DD3FC;
+    border-radius: 8px;
+    padding: 8px 14px;
+    color: #0C4A6E;
+    min-height: 22px;
+}
+
+QComboBox:hover {
+    border-color: #38BDF8;
+}
+
+QComboBox::drop-down {
+    border: none;
+    width: 28px;
+}
+
+QComboBox::down-arrow {
+    image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOCIgdmlld0JveD0iMCAwIDEyIDgiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxwYXRoIGQ9Ik0xIDFMNiA2TDExIDEiIHN0cm9rZT0iIzBDNEE2RSIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiLz4KPC9zdmc+);
+}
+
+/* 进度条样式 */
+QProgressBar {
+    border: 2px solid #7DD3FC;
+    border-radius: 10px;
+    text-align: center;
+    background-color: #E0F2FE;
+    color: #0C4A6E;
+    font-weight: 500;
+    height: 22px;
+}
+
+QProgressBar::chunk {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                stop:0 #0EA5E9, stop:1 #0284C7);
+    border-radius: 8px;
+    margin: 2px;
+}
+
+/* 滚动条样式 */
+QScrollBar:vertical {
+    background-color: #E0F2FE;
+    width: 12px;
+    border-radius: 6px;
+    border: 1px solid #BAE6FD;
+}
+
+QScrollBar::handle:vertical {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                stop:0 #7DD3FC, stop:1 #38BDF8);
+    border-radius: 5px;
+    min-height: 25px;
+    margin: 1px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background: qlineargradient(x1:0, y1:0, x2:1, y2:0,
+                                stop:0 #0EA5E9, stop:1 #0284C7);
+}
+
+QScrollBar:horizontal {
+    background-color: #E0F2FE;
+    height: 12px;
+    border-radius: 6px;
+    border: 1px solid #BAE6FD;
+}
+
+QScrollBar::handle:horizontal {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #7DD3FC, stop:1 #38BDF8);
+    border-radius: 5px;
+    min-width: 25px;
+    margin: 1px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #0EA5E9, stop:1 #0284C7);
+}
+
+/* 分组框样式 */
+QGroupBox {
+    border: 2px solid #7DD3FC;
+    border-radius: 10px;
+    margin-top: 14px;
+    padding-top: 10px;
+    color: #0C4A6E;
+    font-weight: 500;
+    background-color: #FEFEFE;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 14px;
+    padding: 0 10px 0 10px;
+    color: #0EA5E9;
+    font-weight: 600;
+    background-color: #F0F9FF;
+}
+
+/* 选项卡样式 */
+QTabWidget::pane {
+    border: 2px solid #7DD3FC;
+    border-radius: 10px;
+    background-color: #FFFFFF;
+}
+
+QTabBar::tab {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #F0F9FF, stop:1 #E0F2FE);
+    border: 2px solid #7DD3FC;
+    padding: 10px 18px;
+    margin-right: 3px;
+    border-bottom: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+QTabBar::tab:selected {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #0EA5E9, stop:1 #0284C7);
+    color: #FFFFFF;
+}
+
+QTabBar::tab:hover:!selected {
+    background: qlineargradient(x1:0, y1:0, x2:0, y2:1,
+                                stop:0 #E0F2FE, stop:1 #BAE6FD);
+}
+
+/* 复选框和单选框样式 */
+QCheckBox, QRadioButton {
+    color: #0C4A6E;
+    font-weight: 500;
+    spacing: 8px;
+}
+
+QCheckBox::indicator, QRadioButton::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #7DD3FC;
+    background-color: #FFFFFF;
+}
+
+QCheckBox::indicator {
+    border-radius: 3px;
+}
+
+QRadioButton::indicator {
+    border-radius: 9px;
+}
+
+QCheckBox::indicator:checked, QRadioButton::indicator:checked {
+    background-color: #0EA5E9;
+    border-color: #0284C7;
+}
+
+QCheckBox::indicator:hover, QRadioButton::indicator:hover {
+    border-color: #0EA5E9;
+}
+
+/* 菜单样式 */
+QMenuBar {
+    background-color: #E0F2FE;
+    border-bottom: 1px solid #7DD3FC;
+    color: #0C4A6E;
+}
+
+QMenuBar::item {
+    padding: 6px 14px;
+    background: transparent;
+}
+
+QMenuBar::item:selected {
+    background-color: #0EA5E9;
+    color: #FFFFFF;
+}
+
+QMenu {
+    background-color: #FFFFFF;
+    border: 2px solid #7DD3FC;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+QMenu::item {
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+QMenu::item:selected {
+    background-color: #0EA5E9;
+    color: #FFFFFF;
+}
+
+/* 工具提示样式 */
+QToolTip {
+    background-color: #0C4A6E;
+    color: #F0F9FF;
+    border: 1px solid #0EA5E9;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 12px;
+}
+
+/* 状态栏样式 */
+QStatusBar {
+    background-color: #E0F2FE;
+    border-top: 1px solid #7DD3FC;
+    color: #0C4A6E;
+}
+
+/* ===========================================
+   页面容器样式 (自动添加)
+   =========================================== */
+QWidget[objectName="dashboardPage"] {
+    background-color: #FFFFFF;
+}
+
+QWidget[objectName="featuresPage"] {
+    background-color: #FFFFFF;
+}
+
+QWidget[objectName="cardsContainer"] {
+    background-color: transparent;
+}
+
+QScrollArea[objectName="pageScrollArea"] {
+    border: none;
+    background-color: transparent;
+}
+
+QLabel[objectName="pageHeader"] {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1E293B;
+    margin: 10px 0px;
+}
+/* ===========================================
+   占位页面样式 (自动添加)
+   =========================================== */
+QWidget[objectName="placeholderPage"] {
+    background-color: #FFFFFF;
+}
+
+QLabel[objectName="placeholderLabel"] {
+    color: #475569;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+/* ===========================================
+   侧边栏样式 (自动添加)
+   =========================================== */
+QWidget[objectName="sidebar"] {
+    background-color: #F8FAFC;
+    border-right: 2px solid #E2E8F0;
+}
+/* ===========================================
+   组件尺寸约束 (自动添加) - 以莫兰蒂主题为标准
+   =========================================== */
+/* 卡片按钮固定尺寸样式 - 莫兰蒂标准 */
+QPushButton[objectName*="card"] {
+    min-width: 160px;
+    max-width: 160px;
+    min-height: 120px;
+    max-height: 120px;
+    background-color: #FFFFFF;
+    border: 2px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: left;
+    color: #475569;
+}
+
+QPushButton[objectName*="card"]:hover {
+    background-color: #F1F5F9;
+    border-color: #CBD5E1;
+    border-width: 3px;
+    padding: 19px;  /* 补偿边框增加的1px */
+}
+
+QPushButton[objectName*="card"]:pressed {
+    background-color: #E2E8F0;
+    padding: 21px 19px 19px 21px;  /* 模拟按下效果 */
+}
+
+/* 侧边栏按钮固定尺寸样式 - 左对齐 */
+QPushButton[objectName*="sidebar"] {
+    background-color: transparent;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 16px;  /* 左边距减少以实现左对齐 */
+    text-align: left;
+    color: #475569;
+    min-height: 36px;
+    max-height: 36px;
+    min-width: 160px;
+}
+
+QPushButton[objectName*="sidebar"]:hover {
+    background-color: #F1F5F9;
+    color: #1E293B;
+}
+
+QPushButton[objectName*="sidebar"]:pressed {
+    background-color: #E2E8F0;
+}
+
+/* ===========================================
+   ThemeCardButton 专门样式 - Ocean 浅色主题
+   =========================================== */
+
+/* 主题卡片按钮基础样式 - Ocean浅色模式 */
+QPushButton#ThemeCardButton {
+    background-color: #FFFFFF;
+    border: 2px solid #E0F2FE;
+    border-radius: 12px;
+    padding: 12px;
+    color: #0C4A6E;
+    min-width: 160px;
+    max-width: 160px;
+    min-height: 120px;
+    max-height: 120px;
+}
+
+QPushButton#ThemeCardButton:hover {
+    background-color: #F0F9FF;
+    border-color: #0284C7;
+    border-width: 3px;
+    padding: 11px;  /* 补偿边框增加的1px */
+}
+
+QPushButton#ThemeCardButton:pressed {
+    background-color: #E0F2FE;
+    padding: 13px 11px 11px 13px;  /* 模拟按下效果 */
+}
+
+/* 选中状态样式 - Ocean浅色模式 */
+QPushButton#ThemeCardButton:checked {
+    background-color: #0284C7;
+    border-color: #0369A1;
+    color: #FFFFFF;
+}
+
+QPushButton#ThemeCardButton:checked:hover {
+    background-color: #0369A1;
+    border-color: #075985;
+}
+
+/* 主题卡片内部标签样式 - Ocean浅色模式 */
+QPushButton#ThemeCardButton QLabel {
+    background-color: transparent;
+    border: none;
+    color: #0c4a6e;  /* 深蓝色文字，确保在浅色背景下可读 */
+}
+
+QPushButton#ThemeCardButton:enabled QLabel {
+    color: #0c4a6e;  /* 深蓝色文字，加强对比度 */
+}
+
+/* 选中状态下的标签文字为白色 */
+QPushButton#ThemeCardButton:checked QLabel {
+    color: #FFFFFF;
+}
+
+QPushButton#ThemeCardButton:checked:enabled QLabel {
+    color: #FFFFFF;
+}
+
+/* 通过父容器进一步确保样式优先级 - Ocean浅色模式 */
+QWidget[objectName="themeSettingsCard"] QPushButton#ThemeCardButton QLabel {
+    color: #0c4a6e;
+}
+
+QWidget[objectName="themeSettingsCard"] QPushButton#ThemeCardButton:checked QLabel {
+    color: #FFFFFF;
+}
+
+/* FINAL ThemeCardButton override - highest priority - Ocean浅色模式 */
+QPushButton#ThemeCardButton QLabel#themeCardName,
+QPushButton#ThemeCardButton QLabel#themeCardVariant {
+    color: #0c4a6e !important;
+    background-color: transparent !important;
+}
+
+QPushButton#ThemeCardButton:checked QLabel#themeCardName,
+QPushButton#ThemeCardButton:checked QLabel#themeCardVariant {
+    color: #FFFFFF !important;
+}
+
+
